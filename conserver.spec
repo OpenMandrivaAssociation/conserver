@@ -1,12 +1,12 @@
 Summary:	Serial console server daemon/client
 Name:		conserver
-Version:	8.1.14
+Version:	8.1.16
 Release:	%mkrel 1
 License:	BSD-like
 Group:		System/Servers
 URL:		http://www.conserver.com/
-Source0:	http://www.conserver.com/%{name}-%{version}.tar.bz2
-Source1:	%{name}.init.bz2
+Source0:	http://www.conserver.com/%{name}-%{version}.tar.gz
+Source1:	%{name}.init
 Requires(post): rpm-helper
 Requires(preun): rpm-helper
 Requires:	tcp_wrappers
@@ -53,6 +53,8 @@ This package contains the client part.
 
 %setup -q
 
+cp %{SOURCE1} %{name}.init
+
 %build
 
 %configure2_5x \
@@ -89,8 +91,7 @@ install -d %{buildroot}/var/run/%{name}
   < %{name}.cf/%{name}.passwd \
   > %{buildroot}%{_sysconfdir}/%{name}.passwd
 
-bzcat %{SOURCE1} > %{buildroot}%{_initrddir}/%{name}
-chmod 755 %{buildroot}%{_initrddir}/%{name}
+install -m0755 %{name}.init %{buildroot}%{_initrddir}/%{name}
 
 # fix ghostfiles
 touch %{buildroot}/var/log/%{name}/%{name}.log
@@ -144,5 +145,3 @@ fi
 %defattr(-,root,root)
 %{_bindir}/console
 %{_mandir}/man1/console.1*
-
-
