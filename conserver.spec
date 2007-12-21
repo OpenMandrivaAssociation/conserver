@@ -13,6 +13,7 @@ Requires:	tcp_wrappers
 BuildRequires:	openssl-devel
 BuildRequires:	pam-devel
 BuildRequires:	tcp_wrappers-devel
+BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 Conserver is an application that allows multiple users to watch a
