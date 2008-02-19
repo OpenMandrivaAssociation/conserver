@@ -107,7 +107,7 @@ install -m0755 conserver/convert %{buildroot}%{_sbindir}/convert-conserver.cf
 rm -f %{buildroot}%{_libdir}/conserver/convert
 
 %post -n %{name}-daemon
-%_post_service %{name}-daemon
+%_post_service %{name}
 %create_ghostfile /var/log/%{name}/%{name}.log root root 0644
 
 # make sure /etc/services has a conserver entry
@@ -116,7 +116,7 @@ if ! egrep '\<conserver\>' /etc/services > /dev/null 2>&1 ; then
 fi
 
 %preun -n %{name}-daemon
-%_preun_service %{name}-daemon
+%_preun_service %{name}
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
