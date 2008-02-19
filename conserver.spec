@@ -1,7 +1,7 @@
 Summary:	Serial console server daemon/client
 Name:		conserver
 Version:	8.1.16
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	BSD-like
 Group:		System/Servers
 URL:		http://www.conserver.com/
@@ -13,13 +13,13 @@ Requires:	tcp_wrappers
 BuildRequires:	openssl-devel
 BuildRequires:	pam-devel
 BuildRequires:	tcp_wrappers-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
-Conserver is an application that allows multiple users to watch a
-serial console at the same time. It can log the data, allows users to
-take write-access of a console (one at a time), and has a variety of
-bells and whistles to accentuate that basic functionality.
+Conserver is an application that allows multiple users to watch a serial
+console at the same time. It can log the data, allows users to take
+write-access of a console (one at a time), and has a variety of bells and
+whistles to accentuate that basic functionality.
 
 %package -n	conserver-daemon
 Summary:	Serial console server daemon
@@ -29,10 +29,10 @@ Requires(preun): rpm-helper
 Requires:	tcp_wrappers
 
 %description -n	conserver-daemon
-Conserver is an application that allows multiple users to watch a
-serial console at the same time. It can log the data, allows users to
-take write-access of a console (one at a time), and has a variety of
-bells and whistles to accentuate that basic functionality.
+Conserver is an application that allows multiple users to watch a serial
+console at the same time. It can log the data, allows users to take
+write-access of a console (one at a time), and has a variety of bells and
+whistles to accentuate that basic functionality.
 
 This package contains the server daemon part.
 
@@ -42,10 +42,10 @@ Group:		System/Servers
 Requires:	tcp_wrappers
 
 %description -n	conserver-client
-Conserver is an application that allows multiple users to watch a
-serial console at the same time. It can log the data, allows users to
-take write-access of a console (one at a time), and has a variety of
-bells and whistles to accentuate that basic functionality.
+Conserver is an application that allows multiple users to watch a serial
+console at the same time. It can log the data, allows users to take
+write-access of a console (one at a time), and has a variety of bells and
+whistles to accentuate that basic functionality.
 
 This package contains the client part.
 
