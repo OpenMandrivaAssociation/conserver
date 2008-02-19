@@ -1,12 +1,13 @@
 Summary:	Serial console server daemon/client
 Name:		conserver
 Version:	8.1.16
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	BSD-like
 Group:		System/Servers
 URL:		http://www.conserver.com/
 Source0:	http://www.conserver.com/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
+Source2:	%{name}.sysconfig
 Requires(post): rpm-helper
 Requires(preun): rpm-helper
 Requires:	tcp_wrappers
@@ -54,6 +55,7 @@ This package contains the client part.
 %setup -q
 
 cp %{SOURCE1} %{name}.init
+cp %{SOURCE2} %{name}.sysconfig
 
 %build
 
@@ -67,6 +69,7 @@ cp %{SOURCE1} %{name}.init
     --with-pidfile=/var/run/%{name}/%{name}.pid \
     --with-libwrap=%{_prefix} \
     --with-openssl=%{_prefix} \
+    --with-uds=%{_localstatedir}/%{name} \
     --with-maxmemb=16 \
     --with-timeout=10 \
     --with-pam
@@ -81,8 +84,11 @@ cp %{SOURCE1} %{name}.init
 %makeinstall
 
 install -d %{buildroot}%{_initrddir}
+install -d %{buildroot}%{_sysconfdir}/sysconfig
 install -d %{buildroot}/var/log/%{name}
 install -d %{buildroot}/var/run/%{name}
+install -d %{buildroot}/var/consoles
+install -d %{buildroot}%{_localstatedir}/%{name}
 
 %{__sed} -e 's/^/#/' \
   < %{name}.cf/%{name}.cf \
@@ -92,6 +98,7 @@ install -d %{buildroot}/var/run/%{name}
   > %{buildroot}%{_sysconfdir}/%{name}.passwd
 
 install -m0755 %{name}.init %{buildroot}%{_initrddir}/%{name}
+install -m0644 %{name}.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/%{name}
 
 # fix ghostfiles
 touch %{buildroot}/var/log/%{name}/%{name}.log
@@ -131,6 +138,7 @@ fi
 %doc %{name}/Sun-serial
 %config(noreplace) %{_sysconfdir}/%{name}.cf
 %config(noreplace) %{_sysconfdir}/%{name}.passwd
+%config(noreplace) %{_sysconfdir}/sysconfig/%{name}
 %attr(0755,root,root) %{_initrddir}/%{name}
 %{_mandir}/man8/%{name}.8*
 %{_mandir}/man5/%{name}.cf.5*
@@ -139,6 +147,8 @@ fi
 %{_sbindir}/convert-conserver.cf
 %dir /var/log/%{name}
 %dir /var/run/%{name}
+%dir /var/consoles
+%dir %{_localstatedir}/%{name}
 %attr(0644,root,root) %ghost /var/log/%{name}/%{name}.log
 
 %files -n %{name}-client
