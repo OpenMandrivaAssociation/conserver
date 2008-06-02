@@ -69,7 +69,7 @@ cp %{SOURCE2} %{name}.sysconfig
     --with-pidfile=/var/run/%{name}/%{name}.pid \
     --with-libwrap=%{_prefix} \
     --with-openssl=%{_prefix} \
-    --with-uds=%{_localstatedir}/%{name} \
+    --with-uds=%{_localstatedir}/lib/%{name} \
     --with-maxmemb=16 \
     --with-timeout=10 \
     --with-pam
@@ -88,7 +88,7 @@ install -d %{buildroot}%{_sysconfdir}/sysconfig
 install -d %{buildroot}/var/log/%{name}
 install -d %{buildroot}/var/run/%{name}
 install -d %{buildroot}/var/consoles
-install -d %{buildroot}%{_localstatedir}/%{name}
+install -d %{buildroot}%{_localstatedir}/lib/%{name}
 
 %{__sed} -e 's/^/#/' \
   < %{name}.cf/%{name}.cf \
@@ -148,7 +148,7 @@ fi
 %dir /var/log/%{name}
 %dir /var/run/%{name}
 %dir /var/consoles
-%dir %{_localstatedir}/%{name}
+%dir %{_localstatedir}/lib/%{name}
 %attr(0644,root,root) %ghost /var/log/%{name}/%{name}.log
 
 %files -n %{name}-client
