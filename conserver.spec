@@ -1,7 +1,7 @@
 Summary:	Serial console server daemon/client
 Name:		conserver
 Version:	8.1.17
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	BSD-like
 Group:		System/Servers
 URL:		http://www.conserver.com/
@@ -14,7 +14,7 @@ Requires:	tcp_wrappers
 BuildRequires:	openssl-devel
 BuildRequires:	pam-devel
 BuildRequires:	tcp_wrappers-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 Conserver is an application that allows multiple users to watch a serial
@@ -22,14 +22,14 @@ console at the same time. It can log the data, allows users to take
 write-access of a console (one at a time), and has a variety of bells and
 whistles to accentuate that basic functionality.
 
-%package -n	conserver-daemon
+%package daemon
 Summary:	Serial console server daemon
 Group:		System/Servers
 Requires(post): rpm-helper
 Requires(preun): rpm-helper
 Requires:	tcp_wrappers
 
-%description -n	conserver-daemon
+%description daemon
 Conserver is an application that allows multiple users to watch a serial
 console at the same time. It can log the data, allows users to take
 write-access of a console (one at a time), and has a variety of bells and
@@ -37,12 +37,12 @@ whistles to accentuate that basic functionality.
 
 This package contains the server daemon part.
 
-%package -n	conserver-client
+%package client
 Summary:	Serial console server client
 Group:		System/Servers
 Requires:	tcp_wrappers
 
-%description -n	conserver-client
+%description client
 Conserver is an application that allows multiple users to watch a serial
 console at the same time. It can log the data, allows users to take
 write-access of a console (one at a time), and has a variety of bells and
@@ -79,7 +79,7 @@ cp %{SOURCE2} %{name}.sysconfig
 # make test must be run by root?
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 %makeinstall
 
@@ -126,9 +126,9 @@ fi
 %_preun_service %{name}
 
 %clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
-%files -n %{name}-daemon
+%files daemon
 %defattr(-,root,root)
 %doc CHANGES FAQ LICENSE README TODO %{name}.html
 %doc %{name}.cf/%{name}.cf
@@ -151,7 +151,7 @@ fi
 %dir %{_localstatedir}/lib/%{name}
 %attr(0644,root,root) %ghost /var/log/%{name}/%{name}.log
 
-%files -n %{name}-client
+%files client
 %defattr(-,root,root)
 %{_bindir}/console
 %{_mandir}/man1/console.1*
