@@ -1,7 +1,7 @@
 Summary:	Serial console server daemon/client
 Name:		conserver
-Version:	8.1.17
-Release:	%mkrel 3
+Version:	8.1.18
+Release:	%mkrel 1
 License:	BSD-like
 Group:		System/Servers
 URL:		http://www.conserver.com/
@@ -14,6 +14,7 @@ Requires:	tcp_wrappers
 BuildRequires:	openssl-devel
 BuildRequires:	pam-devel
 BuildRequires:	tcp_wrappers-devel
+BuildRequires:	gssglue-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
@@ -57,6 +58,9 @@ This package contains the client part.
 cp %{SOURCE1} %{name}.init
 cp %{SOURCE2} %{name}.sysconfig
 
+# lib64 fixes
+perl -pi -e "s|/lib\b|/%{_lib}|g" configure*
+
 %build
 
 %configure2_5x \
@@ -72,7 +76,8 @@ cp %{SOURCE2} %{name}.sysconfig
     --with-uds=%{_localstatedir}/lib/%{name} \
     --with-maxmemb=16 \
     --with-timeout=10 \
-    --with-pam
+    --with-pam \
+    --with-gssapi
 
 %make
 
