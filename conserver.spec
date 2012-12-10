@@ -160,3 +160,89 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %{_bindir}/console
 %{_mandir}/man1/console.1*
+
+
+%changelog
+* Mon Nov 15 2010 Oden Eriksson <oeriksson@mandriva.com> 8.1.18-1mdv2011.0
++ Revision: 597622
+- 8.1.18
+
+* Wed Apr 21 2010 Funda Wang <fwang@mandriva.org> 8.1.17-3mdv2010.1
++ Revision: 537383
+- rebuild
+
+* Sun Jan 17 2010 Guillaume Rousse <guillomovitch@mandriva.org> 8.1.17-2mdv2010.1
++ Revision: 492663
+- spec cleanup
+
+* Wed Sep 30 2009 Oden Eriksson <oeriksson@mandriva.com> 8.1.17-1mdv2010.0
++ Revision: 451322
+- 8.1.17
+
+* Wed Sep 02 2009 Thierry Vignaud <tv@mandriva.org> 8.1.16-6mdv2010.0
++ Revision: 424944
+- rebuild
+
+* Wed Jul 23 2008 Thierry Vignaud <tv@mandriva.org> 8.1.16-5mdv2009.0
++ Revision: 243628
+- rebuild
+
+  + Pixel <pixel@mandriva.com>
+    - adapt to %%_localstatedir now being /var instead of /var/lib (#22312)
+
+* Tue Feb 19 2008 Oden Eriksson <oeriksson@mandriva.com> 8.1.16-3mdv2008.1
++ Revision: 172963
+- more fixes...
+
+* Tue Feb 19 2008 Oden Eriksson <oeriksson@mandriva.com> 8.1.16-2mdv2008.1
++ Revision: 172959
+- fix a silly bug (duh!)
+- don't start it per default
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+* Wed Apr 18 2007 Oden Eriksson <oeriksson@mandriva.com> 8.1.16-1mdv2008.0
++ Revision: 14791
+- 8.1.16
+
+
+* Fri Dec 22 2006 Oden Eriksson <oeriksson@mandriva.com> 8.1.14-1mdv2007.0
++ Revision: 101626
+- Import conserver
+
+* Tue Apr 11 2006 Oden Eriksson <oeriksson@mandriva.com> 8.1.14-1mdk
+- 8.1.14
+
+* Tue Jan 17 2006 Oden Eriksson <oeriksson@mandriva.com> 8.1.13-1mdk
+- 8.1.13
+
+* Wed Nov 30 2005 Oden Eriksson <oeriksson@mandriva.com> 8.1.11-2mdk
+- rebuilt against openssl-0.9.8a
+
+* Sat Apr 16 2005 Lenny Cartier <lenny@mandrakesoft.com> 8.1.11-1mdk
+- 8.1.11
+
+* Sat Oct 09 2004 Lenny Cartier <lenny@mandrakesoft.com> 8.1.10-1mdk
+- 8.1.10
+- bzip2 source
+
+* Fri Aug 06 2004 Erwan Velu <erwan@mandrakesoft.com> 8.1.9-1mdk
+- 8.1.9
+
+* Sat Jun 12 2004 Oden Eriksson <oeriksson@mandrakesoft.com> 8.1.8-1mdk
+- 8.1.8
+
+* Sun May 30 2004 Oden Eriksson <oeriksson@mandrakesoft.com> 8.1.7-1mdk
+- 8.1.7
+
+* Fri May 28 2004 Lenny Cartier <lenny@mandrakesoft.com> 8.1.6-1mdk
+- 8.1.6
+
+* Thu Apr 15 2004 Michael Scherer <misc@mandrake.org> 8.1.4-1mdk
+- New release 8.1.4
+- rpmbuildupdate aware
+

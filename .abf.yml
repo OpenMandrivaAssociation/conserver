@@ -1,4 +1,2 @@
 sources:
-  "conserver-8.1.18.tar.gz:"	54336e8ce7f48a2d8d51e93f4df492b3e426a192
-  "conserver.init:"	708b6b02fd1c635e060f4aec16a0761fb31b2fbd
-  "conserver.sysconfig:"	b859d2cba612ecd3fc0244c4fddb166b540cd860
+  "conserver-8.1.18.tar.gz": 54336e8ce7f48a2d8d51e93f4df492b3e426a192
