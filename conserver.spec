@@ -1,7 +1,7 @@
 Summary:	Serial console server daemon/client
 Name:		conserver
 Version:	8.1.18
-Release:	1
+Release:	3
 License:	BSD-like
 Group:		System/Servers
 URL:		http://www.conserver.com/
@@ -123,10 +123,7 @@ install -m 755 conserver/convert %{buildroot}%{_sbindir}/convert-conserver.cf
 rm -f %{buildroot}%{_libdir}/conserver/convert
 
 %post -n %{name}-daemon
-if [ $1 -eq 1 ] ; then 
-    # Initial installation 
-    /bin/systemctl daemon-reload >/dev/null 2>&1 || :
-fi
+%systemd_post conserver.service
 %create_ghostfile /var/log/%{name}/%{name}.log root root 0644
 
 #make sure /etc/services has a conserver entry
@@ -135,18 +132,10 @@ if ! grep -E '\<conserver\>' /etc/services > /dev/null 2>&1 ; then
 fi
 
 %preun -n %{name}-daemon
-if [ $1 -eq 0 ] ; then
-    # Package removal, not upgrade
-    /bin/systemctl --no-reload disable conserver.service > /dev/null 2>&1 || :
-    /bin/systemctl stop conserver.service > /dev/null 2>&1 || :
-fi
+%systemd_preun conserver.service
 
 %postun
-/bin/systemctl daemon-reload >/dev/null 2>&1 || :
-if [ $1 -ge 1 ] ; then
-    # Package upgrade, not uninstall
-    /bin/systemctl try-restart conserver.service >/dev/null 2>&1 || :
-fi
+%systemd_postun_with_restart conserver.service
 
 %clean
 
