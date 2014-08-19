@@ -1,7 +1,7 @@
 Summary:	Serial console server daemon/client
 Name:		conserver
 Version:	8.1.18
-Release:	3
+Release:	4
 License:	BSD-like
 Group:		System/Servers
 URL:		http://www.conserver.com/
