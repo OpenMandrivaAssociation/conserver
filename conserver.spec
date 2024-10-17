@@ -4,7 +4,7 @@ Version:	8.1.18
 Release:	5
 License:	BSD-like
 Group:		System/Servers
-URL:		http://www.conserver.com/
+URL:		https://www.conserver.com/
 Source0:	http://www.conserver.com/%{name}-%{version}.tar.gz
 Source1:	%{name}.service
 Source2:	%{name}.sysconfig
