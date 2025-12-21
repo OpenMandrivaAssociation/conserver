@@ -11,6 +11,11 @@ Source2:	%{name}.sysconfig
 Requires(post): rpm-helper
 Requires(preun): rpm-helper
 Requires:	tcp_wrappers
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	openssl-devel
 BuildRequires:	pam-devel
 BuildRequires:	tcp_wrappers-devel
